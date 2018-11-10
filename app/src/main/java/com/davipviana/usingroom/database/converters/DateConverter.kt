@@ -17,11 +17,11 @@ class DateConverter {
     }
 
     @TypeConverter
-    fun convert(timeInMiliseconds: Long?): Calendar {
+    fun convert(timeInMilliseconds: Long?): Calendar {
 
         val calendar = Calendar.getInstance()
 
-        calendar.time = Date(timeInMiliseconds!!)
+        calendar.time = Date(timeInMilliseconds!!)
 
         return calendar
 

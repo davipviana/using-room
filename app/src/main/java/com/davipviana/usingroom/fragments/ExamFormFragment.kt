@@ -19,7 +19,10 @@ import com.davipviana.usingroom.entities.Exam
 
 class ExamFormFragment : Fragment() {
 
-    val PROVA = "prova"
+    companion object {
+        const val PROVA = "prova"
+    }
+
     private lateinit var delegate: ExamsDelegate
     private lateinit var txtSubject: EditText
     private lateinit var txtDate: EditText

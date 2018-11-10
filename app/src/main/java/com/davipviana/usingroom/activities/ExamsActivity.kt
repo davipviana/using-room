@@ -41,6 +41,12 @@ class ExamsActivity : ExamsDelegate, AppCompatActivity() {
     }
 
     override fun handleExamSelected(exam: Exam) {
+        val formFragment = ExamFormFragment()
 
+        val arguments = Bundle();
+        arguments.putSerializable(ExamFormFragment.PROVA, exam)
+        formFragment.arguments = arguments
+
+        showFragment(formFragment, true)
     }
 }

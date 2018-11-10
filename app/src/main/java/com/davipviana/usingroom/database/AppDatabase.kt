@@ -9,7 +9,7 @@ import com.davipviana.usingroom.database.daos.StudentDao
 import com.davipviana.usingroom.entities.Exam
 import com.davipviana.usingroom.entities.Student
 
-@Database(entities = [Student::class, Exam::class], version = 2)
+@Database(entities = [Student::class, Exam::class], version = 3)
 @TypeConverters(DateConverter::class)
 abstract class AppDatabase : RoomDatabase() {
     abstract fun studentDao(): StudentDao
