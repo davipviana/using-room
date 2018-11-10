@@ -1,13 +1,18 @@
 package com.davipviana.usingroom.entities
 
+import android.arch.persistence.room.Entity
+import android.arch.persistence.room.PrimaryKey
 import java.util.*
 
+@Entity
 class Exam {
-    var id: Long? = null
+
+    @PrimaryKey(autoGenerate = true)
+    var id: Long = 0
 
     var subject: String = ""
 
-    var examDate: Calendar? = null
+    var examDate: Calendar = Calendar.getInstance()
 
     override fun toString(): String {
         return subject

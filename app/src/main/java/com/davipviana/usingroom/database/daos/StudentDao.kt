@@ -1,4 +1,4 @@
-package com.davipviana.usingroom.database
+package com.davipviana.usingroom.database.daos
 
 import android.arch.persistence.room.*
 import com.davipviana.usingroom.entities.Student

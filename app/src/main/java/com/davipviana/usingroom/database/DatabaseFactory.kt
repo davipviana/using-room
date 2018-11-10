@@ -12,6 +12,7 @@ class DatabaseFactory {
         return Room
             .databaseBuilder(context, AppDatabase::class.java, DATABASE_NAME)
             .allowMainThreadQueries()
+            .fallbackToDestructiveMigration()
             .build()
     }
 }

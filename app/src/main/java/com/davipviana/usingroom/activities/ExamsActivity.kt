@@ -29,7 +29,7 @@ class ExamsActivity : ExamsDelegate, AppCompatActivity() {
     }
 
     override fun setActivityTitle(title: String) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        this.title = title
     }
 
     override fun handleAddExamClick() {
@@ -37,10 +37,10 @@ class ExamsActivity : ExamsDelegate, AppCompatActivity() {
     }
 
     override fun backToPreviousScreen() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        onBackPressed()
     }
 
     override fun handleExamSelected(exam: Exam) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+
     }
 }
