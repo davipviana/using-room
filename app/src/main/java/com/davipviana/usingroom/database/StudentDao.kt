@@ -1,9 +1,6 @@
 package com.davipviana.usingroom.database
 
-import android.arch.persistence.room.Dao
-import android.arch.persistence.room.Insert
-import android.arch.persistence.room.Query
-import android.arch.persistence.room.Update
+import android.arch.persistence.room.*
 import com.davipviana.usingroom.entities.Student
 
 @Dao
@@ -14,6 +11,11 @@ interface StudentDao {
     @Update
     fun update(student: Student)
 
+    @Delete
+    fun delete(student: Student)
+
     @Query("SELECT * FROM Student ORDER BY name")
     fun getAll(): List<Student>
+
+
 }
