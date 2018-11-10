@@ -1,6 +1,7 @@
 package com.davipviana.usingroom.fragments
 
 
+import android.content.Context
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.view.LayoutInflater
@@ -11,8 +12,9 @@ import android.widget.EditText
 import android.widget.Toast
 
 import com.davipviana.usingroom.R
+import com.davipviana.usingroom.database.DatabaseFactory
 import com.davipviana.usingroom.delegates.StudentsDelegate
-import com.davipviana.usingroom.models.Student
+import com.davipviana.usingroom.entities.Student
 
 /**
  * A simple [Fragment] subclass.
@@ -23,7 +25,7 @@ class StudentFormFragment : Fragment() {
     private val student: Student = Student()
     private lateinit var txtName: EditText
     private lateinit var txtEmail: EditText
-    private lateinit var delegate : StudentsDelegate
+    private lateinit var delegate: StudentsDelegate
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -52,7 +54,10 @@ class StudentFormFragment : Fragment() {
 
         btnAdd.setOnClickListener {
             updateStudentInfo()
-            Toast.makeText(context, student.name, Toast.LENGTH_LONG).show()
+
+            val studentDao = DatabaseFactory().getDatabase(context as Context).studentDao()
+
+            studentDao.insert(student)
 
             delegate.backToPreviousScreen()
         }

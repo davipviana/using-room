@@ -6,7 +6,8 @@
               android:background="#161E4D"
               android:gravity="center"
               android:orientation="vertical"
-              android:padding="35dp">
+              android:padding="35dp"
+                android:theme="@style/AppTheme.NoActionBar">
 
     <TextView
             android:layout_width="match_parent"
