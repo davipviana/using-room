@@ -1,18 +1,21 @@
 package com.davipviana.usingroom.fragments
 
 
+import android.arch.persistence.room.Database
 import android.content.Context
+import android.content.DialogInterface
 import android.os.Bundle
 import android.support.design.widget.FloatingActionButton
 import android.support.design.widget.Snackbar
 import android.support.v4.app.Fragment
+import android.support.v7.app.AlertDialog
+import android.text.InputType
 import android.view.*
-import android.widget.AdapterView
-import android.widget.ArrayAdapter
-import android.widget.ListView
+import android.widget.*
 
 import com.davipviana.usingroom.R
 import com.davipviana.usingroom.database.DatabaseFactory
+import com.davipviana.usingroom.database.converters.DateConverter
 import com.davipviana.usingroom.delegates.ExamsDelegate
 import com.davipviana.usingroom.entities.Exam
 import com.davipviana.usingroom.entities.Student
@@ -38,6 +41,48 @@ class ExamListFragment : Fragment() {
     override fun onCreateOptionsMenu(menu: Menu?, inflater: MenuInflater?) {
         super.onCreateOptionsMenu(menu, inflater)
         inflater!!.inflate(R.menu.exam_list_menu, menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+
+        if (item!!.itemId == R.id.menu_exam_list_calendar) {
+            val linearLayout = LinearLayout(context)
+            linearLayout.orientation = LinearLayout.VERTICAL
+
+            val txtStart = EditText(context)
+            txtStart.hint = "Inicio"
+            txtStart.inputType = InputType.TYPE_DATETIME_VARIATION_DATE
+
+            val txtEnd = EditText(context)
+            txtEnd.hint = "Fim"
+            txtEnd.inputType = InputType.TYPE_DATETIME_VARIATION_DATE
+
+            linearLayout.addView(txtStart)
+            linearLayout.addView(txtEnd)
+
+
+            AlertDialog.Builder(context!!)
+                .setView(linearLayout)
+                .setMessage("Digite as datas para busca")
+                .setPositiveButton("Buscar") { _, _ ->
+                    val startDate = DateConverter().convert(txtStart.text.toString())
+                    val endDate = DateConverter().convert(txtEnd.text.toString())
+
+                    val examDao = DatabaseFactory()
+                                    .getDatabase(context as Context)
+                                    .examDao()
+
+
+                    val exams = examDao.getByPeriod(startDate, endDate)
+
+                    examList.adapter = ArrayAdapter<Exam>(context, android.R.layout.simple_list_item_1, exams)
+                }
+                .setNegativeButton("Cancelar", null)
+                .show()
+
+        }
+
+        return true
     }
 
     override fun onCreateView(
