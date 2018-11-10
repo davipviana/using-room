@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">Using Room</string>
+    <string name="dash_message">O que você deseja fazer?</string>
+    <string name="dash_btn_student">Cadastrar alunos</string>
+    <string name="dash_btn_exam">Adicionar provas</string>
+    <string name="dash_btn_grades">Lançar notas</string>
+    <string name="dash_btn_ranking">Ranking de notas</string>s
 </resources>
