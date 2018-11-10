@@ -22,7 +22,7 @@ import com.davipviana.usingroom.entities.Student
  */
 class StudentFormFragment : Fragment() {
 
-    private val student: Student = Student()
+    private var student: Student = Student()
     private lateinit var txtName: EditText
     private lateinit var txtEmail: EditText
     private lateinit var delegate: StudentsDelegate
@@ -43,7 +43,19 @@ class StudentFormFragment : Fragment() {
     ): View? {
         val view = inflater.inflate(R.layout.fragment_student_form, container, false)
         initializeWidgets(view)
+
+        loadStudentInformation()
+
         return view
+    }
+
+    private fun loadStudentInformation() {
+        if (arguments != null) {
+            student = arguments?.getSerializable("student") as Student
+
+            txtName.setText(student.name)
+            txtEmail.setText(student.email)
+        }
     }
 
     private fun initializeWidgets(view: View) {
@@ -55,11 +67,19 @@ class StudentFormFragment : Fragment() {
         btnAdd.setOnClickListener {
             updateStudentInfo()
 
-            val studentDao = DatabaseFactory().getDatabase(context as Context).studentDao()
-
-            studentDao.insert(student)
+            studentPersist()
 
             delegate.backToPreviousScreen()
+        }
+    }
+
+    private fun studentPersist() {
+        val studentDao = DatabaseFactory().getDatabase(context as Context).studentDao()
+
+        if (student.id == 0L) {
+            studentDao.insert(student)
+        } else {
+            studentDao.update(student)
         }
     }
 

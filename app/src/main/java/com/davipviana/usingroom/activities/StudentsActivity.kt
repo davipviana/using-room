@@ -5,8 +5,10 @@ import android.os.Bundle
 import android.support.v4.app.Fragment
 import com.davipviana.usingroom.R
 import com.davipviana.usingroom.delegates.StudentsDelegate
+import com.davipviana.usingroom.entities.Student
 import com.davipviana.usingroom.fragments.StudentFormFragment
 import com.davipviana.usingroom.fragments.StudentListFragment
+import kotlin.concurrent.fixedRateTimer
 
 class StudentsActivity : StudentsDelegate, AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -37,5 +39,15 @@ class StudentsActivity : StudentsDelegate, AppCompatActivity() {
 
     override fun setActivityTitle(name: String) {
         title = name
+    }
+
+    override fun handleStudentSelected(student: Student) {
+        val formFragment = StudentFormFragment()
+
+        val arguments = Bundle();
+        arguments.putSerializable("student", student)
+        formFragment.arguments = arguments
+
+        showFragment(formFragment, true)
     }
 }

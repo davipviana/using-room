@@ -63,7 +63,15 @@ class StudentListFragment : Fragment() {
         val students = DatabaseFactory().getDatabase(context as Context).studentDao().getAll()
         val adapter = ArrayAdapter<Student>(context, android.R.layout.simple_list_item_1, students)
         studentList.adapter = adapter
+
+
+
+        studentList.setOnItemClickListener { adapterView, view,  position, id ->
+            val student = studentList.getItemAtPosition(position) as Student
+            delegate.handleStudentSelected(student)
+        }
     }
 
 
 }
+

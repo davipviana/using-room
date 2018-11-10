@@ -3,9 +3,10 @@ package com.davipviana.usingroom.entities
 import android.arch.persistence.room.ColumnInfo
 import android.arch.persistence.room.Entity
 import android.arch.persistence.room.PrimaryKey
+import java.io.Serializable
 
 @Entity
-class Student {
+class Student : Serializable {
     @ColumnInfo(name = "name")
     var name: String = ""
     @ColumnInfo(name = "email")
