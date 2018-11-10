@@ -8,14 +8,26 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.davipviana.usingroom.R
-import com.davipviana.usingroom.activities.StudentsActivity
 import com.davipviana.usingroom.delegates.StudentsDelegate
+import com.davipviana.usingroom.models.Student
 
 /**
  * A simple [Fragment] subclass.
  *
  */
 class StudentListFragment : Fragment() {
+
+    private lateinit var delegate : StudentsDelegate
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        delegate = activity as StudentsDelegate
+    }
+
+    override fun onResume() {
+        super.onResume()
+        delegate.setActivityTitle("Lista de Alunos")
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -27,8 +39,7 @@ class StudentListFragment : Fragment() {
         val studentListFab = view.findViewById<FloatingActionButton>(R.id.student_list_fab)
 
         studentListFab.setOnClickListener {
-            val delegate = activity as StudentsDelegate
-            delegate.handleFabClick()
+            delegate.handleAddButtonClick()
         }
 
         return view

@@ -27,7 +27,15 @@ class StudentsActivity : StudentsDelegate, AppCompatActivity() {
         transaction.commit()
     }
 
-    override fun handleFabClick() {
+    override fun handleAddButtonClick() {
         showFragment(StudentFormFragment(), true)
+    }
+
+    override fun backToPreviousScreen() {
+        onBackPressed()
+    }
+
+    override fun setActivityTitle(name: String) {
+        title = name
     }
 }

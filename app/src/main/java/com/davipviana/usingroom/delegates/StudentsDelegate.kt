@@ -1,5 +1,7 @@
 package com.davipviana.usingroom.delegates
 
 interface StudentsDelegate {
-    fun handleFabClick()
+    fun handleAddButtonClick()
+    fun backToPreviousScreen()
+    fun setActivityTitle(name : String)
 }

@@ -6,8 +6,13 @@ import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.EditText
+import android.widget.Toast
 
 import com.davipviana.usingroom.R
+import com.davipviana.usingroom.delegates.StudentsDelegate
+import com.davipviana.usingroom.models.Student
 
 /**
  * A simple [Fragment] subclass.
@@ -15,13 +20,48 @@ import com.davipviana.usingroom.R
  */
 class StudentFormFragment : Fragment() {
 
+    private val student: Student = Student()
+    private lateinit var txtName: EditText
+    private lateinit var txtEmail: EditText
+    private lateinit var delegate : StudentsDelegate
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        delegate = activity as StudentsDelegate
+    }
+
+    override fun onResume() {
+        super.onResume()
+        delegate.setActivityTitle("Cadastro de aluno")
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
-        return inflater.inflate(R.layout.fragment_student_form, container, false)
+        val view = inflater.inflate(R.layout.fragment_student_form, container, false)
+        initializeWidgets(view)
+        return view
     }
 
+    private fun initializeWidgets(view: View) {
+        txtName = view.findViewById(R.id.student_form_name)
+        txtEmail = view.findViewById(R.id.student_form_email)
 
+        val btnAdd = view.findViewById<Button>(R.id.student_form_add);
+
+        btnAdd.setOnClickListener {
+            updateStudentInfo()
+            Toast.makeText(context, student.name, Toast.LENGTH_LONG).show()
+
+            delegate.backToPreviousScreen()
+        }
+    }
+
+    private fun updateStudentInfo() {
+        student.apply {
+            name = txtName.text.toString()
+            email = txtEmail.text.toString()
+        }
+    }
 }
