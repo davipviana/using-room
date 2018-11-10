@@ -6,6 +6,7 @@ import android.support.v4.app.Fragment
 import com.davipviana.usingroom.R
 import com.davipviana.usingroom.delegates.ExamsDelegate
 import com.davipviana.usingroom.entities.Exam
+import com.davipviana.usingroom.fragments.ExamFormFragment
 import com.davipviana.usingroom.fragments.ExamListFragment
 
 class ExamsActivity : ExamsDelegate, AppCompatActivity() {
@@ -32,7 +33,7 @@ class ExamsActivity : ExamsDelegate, AppCompatActivity() {
     }
 
     override fun handleAddExamClick() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        showFragment(ExamFormFragment(), true)
     }
 
     override fun backToPreviousScreen() {
