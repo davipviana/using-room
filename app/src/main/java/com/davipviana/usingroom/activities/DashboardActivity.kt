@@ -12,9 +12,12 @@ class DashboardActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_dashboard)
 
-        dash_btn_aluno.setOnClickListener {
+        dash_btn_student.setOnClickListener {
             startActivity(Intent(this, StudentsActivity::class.java))
+        }
 
+        dash_btn_exams.setOnClickListener {
+            startActivity(Intent(this, ExamsActivity::class.java))
         }
     }
 }

@@ -20,6 +20,8 @@
         </activity>
         <activity android:name=".activities.StudentsActivity">
         </activity>
+        <activity android:name=".activities.ExamsActivity">
+        </activity>
     </application>
 
 </manifest>

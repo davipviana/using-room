@@ -37,8 +37,8 @@ class StudentsActivity : StudentsDelegate, AppCompatActivity() {
         onBackPressed()
     }
 
-    override fun setActivityTitle(name: String) {
-        title = name
+    override fun setActivityTitle(title: String) {
+        this.title = title
     }
 
     override fun handleStudentSelected(student: Student) {

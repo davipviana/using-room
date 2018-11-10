@@ -19,7 +19,7 @@
             android:textStyle="bold" />
 
     <Button
-            android:id="@+id/dash_btn_aluno"
+            android:id="@+id/dash_btn_student"
             android:layout_width="match_parent"
             android:layout_height="56dp"
             android:layout_marginTop="40dp"
@@ -28,7 +28,7 @@
             android:textColor="@color/colorWhite" />
 
     <Button
-            android:id="@+id/dash_btn_provas"
+            android:id="@+id/dash_btn_exams"
             android:layout_width="match_parent"
             android:layout_height="56dp"
             android:layout_marginTop="15dp"
